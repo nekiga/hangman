@@ -243,7 +243,7 @@ int main(void)
     {
         system("cls");
      printRules();
-        printf("FOR TESTING THE SECRET WORD IS %s\n", word);
+       // printf("FOR TESTING THE SECRET WORD IS %s\n", word);
         printf("\n");
     //printword(len, rightGuesses, word);
     printf("\n");
