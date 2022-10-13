@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdbool.h>
-#include <windows.h>
+
 
 void printRules(void)
 {
@@ -12,21 +12,25 @@ void printRules(void)
     printf("You may only guess one letter at a time\n");
     printf("Good luck! don't kill our... volunteer, Mathew. He has children.\n");
 }
-void printStats(int tries, char *correctGuesses, int len, char *word)
+int printStats(int tries, char *correctGuesses, int len, char *word)
 {
     int i;
+    int numClues;
 
     i = 0;
+
     printf("You are on try number %d. You have 8 total  |  ", tries);
-    printf("The word has %d letters  |  ", len);
-    printf("Here is a tip... We don't ACTUALLY hate Mathew:\n");
+    printf("The word has %d letters  |  ", len - 1);
+    printf("Here is a tip, the word contains: ");
     while(i++ < strlen(word))
         {
             if ( i % 2 == 0)
                 printf("%c", word[i]);
+                numClues = i;
         }
         printf("\n");
     i = 0;
+    len = strlen(correctGuesses);
     printf("Here are the letters you already guessed: ");
     while (i <= len)
     {
@@ -36,6 +40,7 @@ void printStats(int tries, char *correctGuesses, int len, char *word)
     }
     printf("\n");
     printf("\nEnter a . at anytime to quit\n\n");
+    return (numClues);
 }
 int inString(char *guesses, char *word)
 {
@@ -230,7 +235,7 @@ int main(void)
             word[i] = '\0';
     }
     fclose(wordFile);
-    system("cls");
+    system("clear");
     // printf("%s\n", word);
     i = 1;
     j = 0;
@@ -242,9 +247,9 @@ int main(void)
     // looping through max numbers of trials
     while (i <= 8)
     {
-        system("cls");
+        system("clear");
      printRules();
-       // printf("FOR TESTING THE SECRET WORD IS %s\n", word);
+       printf("FOR TESTING THE SECRET WORD IS %s\n", word);
         printf("\n");
     //printword(len, rightGuesses, word);
     printf("\n");
@@ -261,7 +266,7 @@ int main(void)
     
     if (i == 8) // checking if tries are at max
     {
-        system("cls");
+        system("clear");
         dead();
         printf("You... really killed him... Jerry call his wife.\n");
         break;
@@ -275,7 +280,7 @@ int main(void)
     scanf(" %c", &guess); // getting guess form user
     if (guess == '.')
     {
-        system("cls");
+        system("clear");
         printf("The player has quit. I wonder what happens to Mathew now.\n");
         return (0);
     }
@@ -284,7 +289,7 @@ int main(void)
     {
         if (j == len - 2)
         {
-             system("cls");
+             system("clear");
             printf("oh... Mathew lives yet another day. i hope he has a good chiro\n");
             break;
         }
